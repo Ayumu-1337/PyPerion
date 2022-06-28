@@ -2,10 +2,7 @@ from requests import post
 
 def obfuscate(
     code: str,
-    clean: bool=False,
-    addbuiltins: bool=False,
-    shell: bool=False,
-    safemode: bool=False,
+    camouflate: bool=False,
     ultrasafemode: bool=False
 ):
     url = "https://api.plague.fun"
@@ -26,21 +23,12 @@ def obfuscate(
 
     payload = code.removeprefix("\n")
 
-    params = {
-        "clean": clean,
-        "addbuiltins": addbuiltins,
-        "shell": shell,
-        "safemode": safemode,
-        "ultrasafemode": ultrasafemode
-    }
-
-    resp = post(url, headers=headers, data=payload, params=params)
+    resp = post(f"{url}?camouflate={str(camouflate).lower()}&ultrasafemode={str(ultrasafemode).lower()}", headers=headers, data=payload)
 
     if resp.status_code != 200:
         print("ERROR")
         return
 
-    text = resp.text
-    obf_code = text.split("\n\n\n")[1]
+    obf_code = resp.text
 
     return obf_code
