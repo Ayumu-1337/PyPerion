@@ -1,11 +1,10 @@
-from requests import post
 from .hyperion import Hyperion
 
 def obfuscate(
     code: str,
     obfcontent: bool=True,
     addbuiltins: bool=True,
-    camoufle: bool=False,
+    camouflate: bool=False,
     safemode: bool=False,
     ultrasafemode: bool=False,
     clean: bool=True,
@@ -17,7 +16,7 @@ def obfuscate(
     
     obf_code = Hyperion(
         addbuiltins=addbuiltins,
-        camouflate=camoufle,
+        camouflate=camouflate,
         clean=clean,
         content=code,
         obfcontent=obfcontent,
